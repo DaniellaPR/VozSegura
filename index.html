@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prototipo Chatbot - Fe y Alegría</title>
+    <style>
+        /* --- CSS: Estilos del Chatbot --- */
+        
+        /* Reseteo básico y fuente */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f9; /* Un fondo gris muy claro para resaltar el chat */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Contenedor principal del chat */
+        .chat-container {
+            width: 100%;
+            max-width: 400px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 80vh; /* Altura adaptable */
+            max-height: 600px;
+        }
+
+        /* Cabecera del chat (Roja) */
+        .chat-header {
+            background-color: #D32F2F; /* Rojo principal */
+            color: #ffffff;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            border-bottom: 2px solid #B71C1C; /* Rojo más oscuro para dar profundidad */
+        }
+
+        .chat-header h2 {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .chat-header .status {
+            font-size: 0.8rem;
+            color: #ffcdd2;
+            margin-top: 2px;
+        }
+
+        /* Área de mensajes */
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background-color: #fafafa;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        /* Burbujas de chat comunes */
+        .message {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            line-height: 1.4;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        /* Mensaje del bot */
+        .message.bot {
+            background-color: #ffffff;
+            color: #333333;
+            border: 1px solid #e0e0e0;
+            border-bottom-left-radius: 2px;
+            align-self: flex-start;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        /* Mensaje del usuario */
+        .message.user {
+            background-color: #D32F2F;
+            color: #ffffff;
+            border-bottom-right-radius: 2px;
+            align-self: flex-end;
+            box-shadow: 0 2px 5px rgba(211, 47, 47, 0.2);
+        }
+
+        /* Pie del chat y botón (Call to Action) */
+        .chat-footer {
+            padding: 20px;
+            background-color: #ffffff;
+            border-top: 1px solid #eeeeee;
+            text-align: center;
+        }
+
+        .redirect-btn {
+            background-color: #D32F2F;
+            color: #ffffff;
+            border: none;
+            padding: 14px 24px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s, transform 0.1s;
+            box-shadow: 0 4px 6px rgba(211, 47, 47, 0.3);
+        }
+
+        .redirect-btn:hover {
+            background-color: #B71C1C; /* Rojo oscuro al pasar el ratón */
+        }
+
+        .redirect-btn:active {
+            transform: scale(0.98); /* Pequeño efecto de clic */
+        }
+
+        /* Animación suave al cargar mensajes */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="chat-container">
+        
+        <header class="chat-header">
+            <div>
+                <h2>Asistente Virtual</h2>
+                <div class="status">En línea 🟢</div>
+            </div>
+        </header>
+
+        <div class="chat-messages">
+            <div class="message bot">
+                ¡Hola! Bienvenido al prototipo del chatbot de Fe y Alegría. 👋
+            </div>
+            <div class="message user">
+                Hola, me gustaría información sobre los centros educativos.
+            </div>
+            <div class="message bot">
+                ¡Por supuesto! Para poder ayudarte mejor y registrar tus datos, por favor completa nuestro formulario haciendo clic en el botón de abajo.
+            </div>
+        </div>
+
+        <div class="chat-footer">
+            <button id="btn-formulario" class="redirect-btn">Ir al Formulario</button>
+        </div>
+
+    </div>
+
+    <script>
+        // Seleccionamos el botón por su ID
+        const botonRedirect = document.getElementById('btn-formulario');
+
+        // Le añadimos un evento de 'clic'
+        botonRedirect.addEventListener('click', function() {
+            // Esta línea redirige a la URL que pediste
+            window.location.href = 'https://www.feyalegria.org.ec/centros/';
+            
+            // Nota: Si en el futuro quieres que se abra en una pestaña nueva, usa:
+            // window.open('https://www.feyalegria.org.ec/centros/', '_blank');
+        });
+    </script>
+
+</body>
+</html>
